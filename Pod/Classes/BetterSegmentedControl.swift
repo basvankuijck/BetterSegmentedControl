@@ -204,7 +204,7 @@ import UIKit
     fileprivate var width: CGFloat { return bounds.width }
     fileprivate var height: CGFloat { return bounds.height }
     fileprivate var titleLabelsCount: Int { return titleLabelsView.subviews.count }
-    fileprivate var titleLabels: [UILabel] { return titleLabelsView.subviews as! [UILabel] }
+    public var titleLabels: [UILabel] { return titleLabelsView.subviews as! [UILabel] }
     fileprivate var selectedTitleLabels: [UILabel] { return selectedTitleLabelsView.subviews as! [UILabel] }
     fileprivate var totalInsetSize: CGFloat { return indicatorViewInset * 2.0 }
     fileprivate lazy var defaultTitles: [String] = { return ["First", "Second"] }()
@@ -297,7 +297,7 @@ import UIKit
      
      - throws: An error of type IndexBeyondBounds(UInt) is thrown if an index beyond the available indices is passed.
      */
-    public func setIndex(_ index: UInt, animated: Bool = true) throws {
+    open func setIndex(_ index: UInt, animated: Bool = true) throws {
         guard titleLabels.indices.contains(Int(index)) else {
             throw IndexError.indexBeyondBounds(index)
         }
@@ -332,7 +332,7 @@ import UIKit
     }
     
     // MARK: Helpers
-    fileprivate func elementFrame(forIndex index: UInt) -> CGRect {
+    open func elementFrame(forIndex index: UInt) -> CGRect {
         let elementWidth = (width - totalInsetSize) / CGFloat(titleLabelsCount)
         return CGRect(x: CGFloat(index) * elementWidth + indicatorViewInset,
                       y: indicatorViewInset,
